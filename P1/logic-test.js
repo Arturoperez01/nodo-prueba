@@ -76,11 +76,35 @@ function listTeamsIds () {
 // 1 Arreglo con los nombres de los equipos y el país al que pertenecen, ordenados alfabéticamente por el nombre de su país de origen.
 function listTeamsByCountry () {
   // CODE HERE
+  
+  return teams.sort(function(teamA, teamB) {
+                                let countryA = teamA.country.toUpperCase(); // ignore upper and lowercase
+                                let countryB = teamB.country.toUpperCase(); // ignore upper and lowercase
+                                if (countryA < countryB) {
+                                  return -1;
+                                }
+                                if (countryA > countryB) {
+                                  return 1;
+                                }
+                              
+                                // names must be equal
+                                return 0;
+                              });
 }
 
 // 2 Arreglo con los nombres de los equipos ordenados de mayor a menor por la cantidad de victorias en champions league.
 function sortTeamsByWins () {
   // CODE HERE
+  let sortedWinners = winsByTeams.sort((teamA,teamB)=>{
+    return teamB.wins - teamA.wins;
+  });
+  //return sortedWinners;
+  return sortedWinners.map((winner)=>{
+                            team = teams.filter(team=>team.id==winner.teamId);
+                            winner.name = team[0].name;
+                            winner.country = team[0].country;
+                            return winner;
+                          });
 }
 
 // 3 Arreglo de objetos en donde se muestre el nombre de las ligas y la sumatoria de las victorias de los equipos que pertenecen a ellas.
