@@ -1,3 +1,8 @@
+# Solucion de evaluacion practica 
+
+Nombre: Arturo Perez
+Rut:    25818474-2
+
 # NODO - Test
 Prueba Técnica de Nodo - Node.js
 
