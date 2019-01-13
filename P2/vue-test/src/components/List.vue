@@ -3,7 +3,7 @@
     <h1 v-show="isLoading">
       Cargando personajes ...
     </h1>
-    <table v-show="!isLoading">
+    <table class = "rwd-table" v-show="!isLoading">
       <tr>
         <th>Nombre</th>
         <th>Casa</th>
@@ -11,8 +11,8 @@
       </tr>
       <tr v-for="character in characters">
         <td>{{ character.name }}</td>
-        <td>{{ character.house }}</td>
-        <td> <button @click="goToDetail(character._id)">Ver detalle</button> </td>
+        <td>{{ character.house ? character.house :  'Ninguno' }}</td>
+        <td> <button @click="goToDetail(character._id)">ver detalles</button> </td>
       </tr>
     </table>
   </div>
@@ -59,15 +59,39 @@
        */
       goToDetail(id) {
         // CODE HERE
+        this.$router.push({ path: 'detail/'+id  })
       }
     }
   }
 </script>
 <style>
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #eee;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: -1px;
+  color: #34495E;
+}
+
+.rwd-table {
+  background: #34495E;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+}
   table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 35em;
+    margin: 0 10em 0 10em;
   }
 
   td, th {
@@ -76,7 +100,4 @@
     padding: 8px;
   }
 
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
 </style>
